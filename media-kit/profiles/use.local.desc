@@ -611,7 +611,7 @@ media-sound/herrie:xspf - Enable support for reading and saving XSPF playlists
 media-sound/hydrogen:archive - Use libarchive instead of libtar
 media-sound/jack-audio-connection-kit:coreaudio - Build the CoreAudio driver on Mac OS X systems
 media-sound/jack-audio-connection-kit:cpudetection - Enables runtime cpudetection
-media-sound/jack-audio-connection-kit:pam - Add basic realtime configuration via sys-auth/realtime-base
+media-sound/jack-audio-connection-kit:pam - Add basic realime configuration via sys-auth/realtime-base
 media-sound/jack2:celt - Support CELT low delay audio codec (media-libs/celt)
 media-sound/jack2:classic - Enable building of jackd
 media-sound/jack2:opus - Support media-libs/opus
@@ -748,6 +748,8 @@ media-sound/qtractor:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/qtractor:rubberband - Enable support for in-place audio clip pitch-shifting through the rubberband library
 media-sound/qtscrobbler:cli - Build commandline client
 media-sound/quark:gnome - Provides tray-icon and enables gconf support
+media-sound/renoise:icons - Install icons and desktop menu entries
+media-sound/renoise-demo:icons - Install icons and desktop menu entries
 media-sound/rhythmbox:daap - Build the local network music sharing plugin which uses the DAAP protocol using net-libs/libdmapsharing
 media-sound/rhythmbox:visualizer - Enable support for visualizations using media-plugins/gst-plugins-libvisual
 media-sound/rhythmbox:zeitgeist - Build the plugin to inject events to gnome-extra/zeitgeist
