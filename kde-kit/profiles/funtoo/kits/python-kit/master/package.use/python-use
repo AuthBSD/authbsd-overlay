@@ -1,7 +1,0 @@
-=app-office/libreoffice-5.2.7.2 python_single_target_python2_7
-app-office/libreoffice-bin python_single_target_python2_7
-kde-apps/kig python_single_target_python2_7
-kde-apps/kross-interpreters python_single_target_python2_7
-kde-apps/kstars python_single_target_python2_7
-kde-apps/lokalize python_single_target_python2_7
-kde-frameworks/kapidox python_single_target_python2_7
