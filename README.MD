@@ -20,10 +20,15 @@ Adding Kits ( you can use just THAT  you want )
 Example for KDE-KIT :
 
 cat << 'EOF' >> /etc/portage/repos.conf/kde-kit
+
 [vmware]
+
 location = /var/git/authbsd-overlay/kde-kit
+
 auto-sync = no
+
 priority = 10
+
 EOF
 
 
