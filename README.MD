@@ -4,6 +4,9 @@
 - http://git.funtoo.org/gentoo-staging
 - https://github.com/funtoo/merge-scripts
 
+Contact:  IRC @FREENODE #funtoo my nick is pfctl
+
+
 * Instructions:
 
 Make sure that /etc/portage/repos.conf IS NOT a SYMLINK to /var/git/meta-repo/repos.conf
@@ -30,6 +33,8 @@ auto-sync = no
 priority = 10
 
 EOF
+
+
 
 
 
