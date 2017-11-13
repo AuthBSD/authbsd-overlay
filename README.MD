@@ -21,7 +21,7 @@ Example for KDE-KIT :
 
 cat << 'EOF' >> /etc/portage/repos.conf/kde-kit
 
-[vmware]
+[kde-kit]
 
 location = /var/git/authbsd-overlay/kde-kit
 
