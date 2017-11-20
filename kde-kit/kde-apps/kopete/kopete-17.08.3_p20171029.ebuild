@@ -3,14 +3,17 @@
 
 EAPI=6
 
-KDE_HANDBOOK="optional"
-QT3SUPPORT_REQUIRED="true"
-inherit kde4-base
+COMMIT=d7dbacb483124d5d6a8ad30586ec126c8514a715
+KDE_HANDBOOK="forceoptional"
+KDE_TEST="forceoptional"
+inherit kde5 vcs-snapshot
 
-DESCRIPTION="KDE multi-protocol IM client"
+DESCRIPTION="Multi-protocol IM client based on KDE Frameworks"
 HOMEPAGE="https://kopete.kde.org https://www.kde.org/applications/internet/kopete"
+SRC_URI="https://github.com/KDE/${PN}/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
+
 KEYWORDS="~amd64 ~x86"
-IUSE="debug ssl v4l"
+IUSE="ssl v4l"
 
 # tests hang, last checked for 4.2.96
 RESTRICT+=" test"
@@ -21,7 +24,6 @@ RESTRICT+=" test"
 #	alias: NO DEPS (disabled upstream)
 #	autoreplace: NO DEPS
 #	contactnotes: NO DEPS
-#	cryptography: kde-apps/libkleo:4
 #	highlight: NO DEPS
 #	history: NO DEPS
 #	latex: virtual/latex as RDEPEND
@@ -35,9 +37,8 @@ RESTRICT+=" test"
 #	urlpicpreview: NO DEPS
 #	webpresence: libxml2 libxslt
 # NOTE: By default we enable all plugins that don't have any dependencies
-PLUGINS="+addbookmarks +autoreplace +contactnotes cryptography +highlight
-+history latex +nowlistening otr +pipes +privacy +statistics +texteffect
-+translator +urlpicpreview webpresence"
+PLUGINS="+addbookmarks +autoreplace +contactnotes +highlight history latex nowlistening
+otr pipes +privacy +statistics +texteffect translator +urlpicpreview webpresence"
 
 # Available protocols
 #
@@ -45,7 +46,6 @@ PLUGINS="+addbookmarks +autoreplace +contactnotes cryptography +highlight
 #	groupwise: app-crypt/qca:2
 #	irc: NO DEPS, probably will fail so inform user about it
 #	xmpp: net-dns/libidn app-crypt/qca:2 ENABLED BY DEFAULT NETWORK
-#	jingle: media-libs/speex net-libs/ortp DISABLED BY UPSTREAM
 #	meanwhile: net-libs/meanwhile
 #	oscar: NO DEPS
 #	telepathy: net-libs/decibel
@@ -53,8 +53,8 @@ PLUGINS="+addbookmarks +autoreplace +contactnotes cryptography +highlight
 #	winpopup: NO DEPS (we're adding samba as RDEPEND so it works)
 #	yahoo: media-libs/jasper
 #	zeroconf (bonjour): NO DEPS
-PROTOCOLS="gadu groupwise jingle meanwhile oscar skype
-testbed winpopup +xmpp yahoo zeroconf"
+# DISABLED until fixed: skype sms
+PROTOCOLS="gadu groupwise meanwhile oscar testbed winpopup +xmpp yahoo zeroconf"
 
 # disabled protocols
 #	telepathy: net-libs/decibel
@@ -65,24 +65,34 @@ testbed winpopup +xmpp yahoo zeroconf"
 IUSE="${IUSE} ${PLUGINS} ${PROTOCOLS}"
 
 COMMONDEPEND="
-	$(add_kdeapps_dep kdepimlibs '' 4.14.10_p20160611)
+	$(add_frameworks_dep kcmutils)
+	$(add_frameworks_dep kconfig)
+	$(add_frameworks_dep kcrash)
+	$(add_frameworks_dep kdbusaddons)
+	$(add_frameworks_dep khtml)
+	$(add_frameworks_dep kcoreaddons)
+	$(add_frameworks_dep kdbusaddons)
+	$(add_frameworks_dep kdelibs4support)
+	$(add_frameworks_dep kemoticons)
+	$(add_frameworks_dep khtml)
+	$(add_frameworks_dep ki18n)
+	$(add_frameworks_dep knotifyconfig)
+	$(add_frameworks_dep kparts)
+	$(add_frameworks_dep ktexteditor)
+	$(add_kdeapps_dep kcontacts)
+	$(add_kdeapps_dep kidentitymanagement)
+	$(add_kdeapps_dep libkleo)
+	$(add_qt_dep qtgui)
+	$(add_qt_dep qtsql)
+	$(add_qt_dep qtwidgets)
+	$(add_qt_dep qtxml)
+	app-crypt/gpgme[cxx,qt5]
 	dev-libs/libpcre
-	>=dev-qt/qtgui-4.4.0:4[mng]
-	kde-frameworks/kdelibs:4[zeroconf?]
-	media-libs/phonon[qt4]
-	media-libs/qimageblitz[-qt5(+)]
+	media-libs/phonon[qt5(+)]
 	x11-libs/libX11
 	x11-libs/libXScrnSaver
-	cryptography? ( $(add_kdeapps_dep libkleo '' 4.4.2016.01-r1) )
 	gadu? ( >=net-libs/libgadu-1.8.0[threads] )
-	groupwise? ( app-crypt/qca:2[qt4(+)] )
-	jingle? (
-		dev-libs/expat
-		dev-libs/openssl:0
-		>=media-libs/mediastreamer-2.3.0
-		net-libs/libsrtp:=
-		net-libs/ortp:=
-	)
+	groupwise? ( app-crypt/qca:2[qt5] )
 	meanwhile? ( net-libs/meanwhile )
 	otr? ( >=net-libs/libotr-4.0.0 )
 	statistics? ( dev-db/sqlite:3 )
@@ -92,42 +102,41 @@ COMMONDEPEND="
 		dev-libs/libxslt
 	)
 	xmpp? (
-		app-crypt/qca:2[qt4(+)]
-		dev-libs/qjson
+		app-crypt/qca:2[qt5]
 		net-dns/libidn
 		sys-libs/zlib
 	)
 	yahoo? ( media-libs/jasper )
+	zeroconf? (
+		$(add_frameworks_dep kdnssd)
+		$(add_kdeapps_dep kidentitymanagement)
+	)
 "
 RDEPEND="${COMMONDEPEND}
-	!=kde-apps/kdepimlibs-4.14.11_pre20160211*
-	jingle? ( media-libs/speex )
 	latex? (
-		virtual/imagemagick-tools
+		|| (
+			media-gfx/imagemagick
+			media-gfx/graphicsmagick[imagemagick]
+		)
 		virtual/latex-base
 	)
 	ssl? ( app-crypt/qca:2[ssl] )
-	winpopup? ( net-fs/samba )
 "
 DEPEND="${COMMONDEPEND}
 	x11-proto/scrnsaverproto
-	jingle? ( dev-libs/jsoncpp )
 "
-
-PATCHES=( "${FILESDIR}/${PN}-17.04.0-kde4qgpgme.patch" )
 
 src_configure() {
 	local x x2
 	# Handle common stuff
 	local mycmakeargs=(
-		-DWITH_LiboRTP=$(usex jingle)
-		-DWITH_Mediastreamer=$(usex jingle)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Libmsn=ON
+		-DWITH_qq=OFF
 		-DDISABLE_VIDEOSUPPORT=$(usex !v4l)
 	)
 	# enable protocols
 	for x in ${PROTOCOLS}; do
 		case ${x/+/} in
-			jingle) x2=libjingle ;;
 			xmpp) x2=jabber ;;
 			zeroconf) x2=bonjour ;;
 			*) x2=${x/+/} ;;
@@ -135,21 +144,22 @@ src_configure() {
 		mycmakeargs+=( -DWITH_${x2}=$(usex ${x/+/}) )
 	done
 
-	mycmakeargs+=( -DWITH_Libmsn=OFF -DWITH_qq=OFF -DWITH_sms=OFF )
+	# disable until fixed:
+	mycmakeargs+=( -DWITH_{cryptography,libjingle,skype,sms}=OFF )
 
 	# enable plugins
 	for x in ${PLUGINS}; do
 		mycmakeargs+=( -DWITH_${x/+/}=$(usex ${x/+/}) )
 	done
 
-	kde4-base_src_configure
+	kde5_src_configure
 }
 
 pkg_postinst() {
-	kde4-base_pkg_postinst
+	kde5_pkg_postinst
 
 	if ! use ssl; then
-		if use xmpp ; then # || use irc; then
+		if use xmpp ; then
 			if ! has_version "app-crypt/qca:2[ssl]" ; then
 				elog "In order to use ssl in xmpp you'll need to"
 				elog "install app-crypt/qca package with USE=ssl."
