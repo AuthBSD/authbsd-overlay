@@ -1,3 +1,4 @@
+=app-office/libreoffice-bin-5.4.2.2-r1 python_single_target_python3_5 python_targets_python3_5
 kde-apps/kajongg python_single_target_python3_5 python_targets_python3_5
 kde-apps/kig python_single_target_python2_7
 kde-apps/kross-interpreters python_single_target_python2_7
