@@ -3,6 +3,7 @@
 # * generated automatically using egencache *
 
 app-accessibility/simon:opencv - Use media-libs/opencv
+app-accessibility/simon:pim - Enable support for KDE PIM resources integration
 app-accessibility/simon:sphinx - Build sphinx backend (pulls app-accessibility/julius if disabled
 app-admin/calamares:pythonqt - Enable PythonQt-based module interface
 app-office/calligra:activities - Enable kactivities support
