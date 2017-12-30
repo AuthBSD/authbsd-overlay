@@ -188,7 +188,6 @@ kde-apps/akonadi:tools - Install tools for developers and testing
 kde-apps/analitza:eigen - Enable dev-cpp/eigen mathematical templates support
 kde-apps/ark:zip - Enable ZIP archive support via dev-libs/libzip
 kde-apps/artikulate:qtmedia - Enable playback via Qt5Multimedia
-kde-apps/blogilo:google - Google service integration via kde-apps/libkgapi
 kde-apps/cantor:R - Enable dev-lang/R backend support
 kde-apps/cantor:analitza - Enable kde-apps/analitza backend support
 kde-apps/cantor:julia - Enable dev-lang/julia backend support
@@ -201,7 +200,6 @@ kde-apps/dolphin-plugins:mercurial - Enable support for the mercurial VCS
 kde-apps/gwenview:fits - Enable support for NASA's sci-libs/cfitsio library
 kde-apps/gwenview:kipi - Support for the KDE Image Plugin Interface
 kde-apps/k3b:emovix - Enable burning support for eMoviX images
-kde-apps/kaccessible:speechd - Enable support for the speech-dispatcher speech synthesizer
 kde-apps/kalzium:editor - Enable the embedded molecule editor/viewer
 kde-apps/kalzium:solver - Enable the equation solver
 kde-apps/kanagram:speech - Enable text-to-speech support
