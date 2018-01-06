@@ -35,8 +35,11 @@ media-libs/mesa:vulkan - Enable Vulkan drivers
 media-libs/mesa:wayland - Enable support for dev-libs/wayland
 media-libs/mesa:xa - Enable the XA (X Acceleration) API for Gallium3D.
 media-libs/mesa:xvmc - Enable the XvMC acceleration interface for the Gallium3D Video Layer.
+x11-apps/intel-gpu-tools:glib - Support reading config files via glib helpers
 x11-apps/intel-gpu-tools:test-programs - Install test programs for DRM driver development
 x11-apps/intel-gpu-tools:unwind - Provide automatic stack traces on test failures
+x11-apps/intel-gpu-tools:valgrind - Support valgrind annotations
+x11-apps/intel-gpu-tools:xrandr - Enable support for the X RandR extension
 x11-apps/mesa-progs:egl - Build EGL utilities
 x11-apps/mesa-progs:gles2 - Build OpenGL ES 2 utilities
 x11-apps/xdm:consolekit - Enable native sys-auth/consolekit support
